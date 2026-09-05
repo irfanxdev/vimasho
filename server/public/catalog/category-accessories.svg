@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 900" width="700" height="900">
+    
+    <defs>
+      <linearGradient id="bg-category-accessories" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#F1E9D8" />
+        <stop offset="100%" stop-color="#E4D8BE" />
+      </linearGradient>
+      <radialGradient id="shadow-category-accessories" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stop-color="#00000022" />
+        <stop offset="100%" stop-color="#00000000" />
+      </radialGradient>
+    </defs>
+    <rect width="700" height="900" fill="url(#bg-category-accessories)" />
+    <ellipse cx="350" cy="810" rx="180" ry="34" fill="url(#shadow-category-accessories)" />
+  
+    <g>
+      <path d="M 140 300 C 260 260, 340 420, 460 380 S 620 300, 560 260
+               L 560 300 C 600 340, 520 420, 440 420 S 280 320, 200 360 Z"
+            fill="#BF9B30" stroke="#8f7424" stroke-width="2" />
+      <path d="M 150 300 C 130 340, 120 380, 100 400" stroke="#8f7424" stroke-width="1.4" fill="none" />
+      <path d="M 165 320 C 145 355, 135 390, 118 410" stroke="#8f7424" stroke-width="1.4" fill="none" />
+      <path d="M 560 260 C 590 290, 610 320, 615 350" stroke="#8f7424" stroke-width="1.4" fill="none" />
+      <path d="M 545 245 C 575 270, 598 300, 605 330" stroke="#8f7424" stroke-width="1.4" fill="none" />
+      <circle cx="230" cy="324" r="2" fill="#BF9B30" opacity="0.8" /><circle cx="256" cy="336" r="2" fill="#BF9B30" opacity="0.8" /><circle cx="282" cy="324" r="2" fill="#BF9B30" opacity="0.8" /><circle cx="308" cy="336" r="2" fill="#BF9B30" opacity="0.8" /><circle cx="334" cy="324" r="2" fill="#BF9B30" opacity="0.8" /><circle cx="360" cy="336" r="2" fill="#BF9B30" opacity="0.8" /><circle cx="386" cy="324" r="2" fill="#BF9B30" opacity="0.8" /><circle cx="412" cy="336" r="2" fill="#BF9B30" opacity="0.8" /><circle cx="438" cy="324" r="2" fill="#BF9B30" opacity="0.8" /><circle cx="464" cy="336" r="2" fill="#BF9B30" opacity="0.8" />
+      
+    <g transform="translate(350,520) scale(1)">
+      <line x1="-26" y1="0" x2="-10" y2="0" stroke="#BF9B30" stroke-width="1.4" />
+      <line x1="10" y1="0" x2="26" y2="0" stroke="#BF9B30" stroke-width="1.4" />
+      <rect x="-6" y="-6" width="12" height="12" transform="rotate(45)" stroke="#BF9B30" stroke-width="1.4" fill="none" />
+      <rect x="-2.5" y="-2.5" width="5" height="5" transform="rotate(45)" fill="#BF9B30" />
+    </g>
+  
+    </g>
+  </svg>

@@ -1,0 +1,58 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-ivory text-charcoal font-sans antialiased;
+  }
+  h1, h2, h3, h4 {
+    @apply font-display;
+  }
+  ::selection {
+    @apply bg-gold/30 text-forest;
+  }
+  *:focus-visible {
+    outline: 2px solid #BF9B30;
+    outline-offset: 2px;
+  }
+}
+
+@layer components {
+  .container-content {
+    @apply max-w-content mx-auto px-5 sm:px-8 lg:px-12;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 bg-forest text-ivory px-7 py-3 text-sm tracking-wide
+           transition-colors duration-200 hover:bg-forest-dark disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .btn-outline {
+    @apply inline-flex items-center justify-center gap-2 border border-forest text-forest px-7 py-3 text-sm tracking-wide
+           transition-colors duration-200 hover:bg-forest hover:text-ivory disabled:opacity-50;
+  }
+
+  .btn-gold {
+    @apply inline-flex items-center justify-center gap-2 bg-gold text-forest-dark px-7 py-3 text-sm font-medium tracking-wide
+           transition-colors duration-200 hover:bg-gold-dark hover:text-ivory disabled:opacity-50;
+  }
+
+  .input-field {
+    @apply w-full border border-charcoal/20 bg-white px-4 py-3 text-sm text-charcoal placeholder:text-charcoal/40
+           focus:border-gold focus:ring-1 focus:ring-gold outline-none transition-colors;
+  }
+
+  .section-heading {
+    @apply text-3xl sm:text-4xl font-display font-medium text-forest;
+  }
+}
+
+/* subtle divider rule used between sections, echoing the logo's fine gold linework */
+.rule-divider {
+  height: 1px;
+  background: linear-gradient(to right, transparent, #BF9B30, transparent);
+}

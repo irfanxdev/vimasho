@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 900" width="700" height="900">
+    
+    <defs>
+      <linearGradient id="bg-sherwani-emerald-2" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#F1E9D8" />
+        <stop offset="100%" stop-color="#E4D8BE" />
+      </linearGradient>
+      <radialGradient id="shadow-sherwani-emerald-2" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stop-color="#00000022" />
+        <stop offset="100%" stop-color="#00000000" />
+      </radialGradient>
+    </defs>
+    <rect width="700" height="900" fill="url(#bg-sherwani-emerald-2)" />
+    <ellipse cx="350" cy="810" rx="180" ry="34" fill="url(#shadow-sherwani-emerald-2)" />
+  
+    <g>
+      <!-- sleeves -->
+      <path d="M 220 270
+               C 160 380, 150 520, 180 600
+               L 230 580
+               C 210 480, 230 360, 260 290 Z"
+            fill="#0F2A1D" stroke="#0a1b13" stroke-width="2" />
+      <path d="M 480 270
+               C 540 380, 550 520, 520 600
+               L 470 580
+               C 490 480, 470 360, 440 290 Z"
+            fill="#0F2A1D" stroke="#0a1b13" stroke-width="2" />
+
+      <!-- body: long coat, tapering out to hem -->
+      <path d="M 220 260
+               Q 350 230 480 260
+               L 525 760
+               Q 350 782 175 760
+               Z"
+            fill="#0F2A1D" stroke="#0a1b13" stroke-width="2.5" />
+
+      <!-- center placket -->
+      <line x1="350" y1="275" x2="350" y2="750" stroke="#0a1b13" stroke-width="1.5" />
+      <circle cx="350" cy="300" r="4.5" fill="#BF9B30" /><circle cx="350" cy="380" r="4.5" fill="#BF9B30" /><circle cx="350" cy="460" r="4.5" fill="#BF9B30" /><circle cx="350" cy="540" r="4.5" fill="#BF9B30" /><circle cx="350" cy="620" r="4.5" fill="#BF9B30" /><circle cx="350" cy="700" r="4.5" fill="#BF9B30" />
+
+      <!-- mandarin collar -->
+      <path d="M 304 264 Q 350 226 396 264 L 390 284 Q 350 256 310 284 Z"
+            fill="#0a1b13" />
+
+      <circle cx="420.0" cy="320.0" r="2.2" fill="#BF9B30" opacity="0.85" /><circle cx="431.1" cy="326.7" r="2.2" fill="#BF9B30" opacity="0.85" /><circle cx="434.9" cy="333.0" r="2.2" fill="#BF9B30" opacity="0.85" /><circle cx="399.5" cy="338.4" r="2.2" fill="#BF9B30" opacity="0.85" /><circle cx="392.0" cy="342.5" r="2.2" fill="#BF9B30" opacity="0.85" /><circle cx="375.4" cy="345.1" r="2.2" fill="#BF9B30" opacity="0.85" /><circle cx="350.0" cy="346.0" r="2.2" fill="#BF9B30" opacity="0.85" /><circle cx="328.3" cy="345.1" r="2.2" fill="#BF9B30" opacity="0.85" /><circle cx="301.0" cy="342.5" r="2.2" fill="#BF9B30" opacity="0.85" /><circle cx="300.5" cy="338.4" r="2.2" fill="#BF9B30" opacity="0.85" /><circle cx="277.3" cy="333.0" r="2.2" fill="#BF9B30" opacity="0.85" /><circle cx="255.3" cy="326.7" r="2.2" fill="#BF9B30" opacity="0.85" /><circle cx="280.0" cy="320.0" r="2.2" fill="#BF9B30" opacity="0.85" /><circle cx="268.9" cy="313.3" r="2.2" fill="#BF9B30" opacity="0.85" /><circle cx="265.1" cy="307.0" r="2.2" fill="#BF9B30" opacity="0.85" /><circle cx="300.5" cy="301.6" r="2.2" fill="#BF9B30" opacity="0.85" /><circle cx="308.0" cy="297.5" r="2.2" fill="#BF9B30" opacity="0.85" /><circle cx="324.6" cy="294.9" r="2.2" fill="#BF9B30" opacity="0.85" /><circle cx="350.0" cy="294.0" r="2.2" fill="#BF9B30" opacity="0.85" /><circle cx="371.7" cy="294.9" r="2.2" fill="#BF9B30" opacity="0.85" /><circle cx="399.0" cy="297.5" r="2.2" fill="#BF9B30" opacity="0.85" /><circle cx="399.5" cy="301.6" r="2.2" fill="#BF9B30" opacity="0.85" /><circle cx="422.7" cy="307.0" r="2.2" fill="#BF9B30" opacity="0.85" /><circle cx="444.7" cy="313.3" r="2.2" fill="#BF9B30" opacity="0.85" />
+
+      
+    <g transform="translate(350,815) scale(1)">
+      <line x1="-26" y1="0" x2="-10" y2="0" stroke="#BF9B30" stroke-width="1.4" />
+      <line x1="10" y1="0" x2="26" y2="0" stroke="#BF9B30" stroke-width="1.4" />
+      <rect x="-6" y="-6" width="12" height="12" transform="rotate(45)" stroke="#BF9B30" stroke-width="1.4" fill="none" />
+      <rect x="-2.5" y="-2.5" width="5" height="5" transform="rotate(45)" fill="#BF9B30" />
+    </g>
+  
+    </g>
+  </svg>
