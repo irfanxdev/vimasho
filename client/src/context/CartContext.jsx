@@ -8,7 +8,7 @@ const CartContext = createContext(null);
 const normalizeCart = (items) =>
   (Array.isArray(items) ? items : []).filter((item) => {
     const quantity = Number(item?.quantity);
-    return item?.product && Number.isFinite(quantity) && quantity > 0;
+    return item?.product?._id && Number.isFinite(quantity) && quantity > 0;
   });
 
 const getProductPrice = (product) => {
@@ -36,7 +36,8 @@ export function CartProvider({ children }) {
       const { data } = await api.get('/users/cart');
       setCart(normalizeCart(data));
     } catch {
-      // silent - user may have stale token
+      // Do not keep showing a previous user's or stale cart after a failed refresh.
+      setCart([]);
     } finally {
       setLoadingCart(false);
     }

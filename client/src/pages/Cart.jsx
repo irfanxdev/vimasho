@@ -1,5 +1,5 @@
 import { Link, useNavigate } from 'react-router-dom';
-import { FiTrash2, FiMinus, FiPlus } from 'react-icons/fi';
+import { FiArrowLeft, FiTrash2, FiMinus, FiPlus } from 'react-icons/fi';
 import { useCart } from '../context/CartContext';
 import Loader from '../components/Loader';
 import { resolveImage } from '../utils/image';
@@ -7,12 +7,22 @@ import { resolveImage } from '../utils/image';
 export default function Cart() {
   const { cart, loadingCart, updateCartItem, removeCartItem, cartTotal } = useCart();
   const navigate = useNavigate();
+  const goBack = () => {
+    if (window.history.length > 1) {
+      navigate(-1);
+    } else {
+      navigate('/products');
+    }
+  };
 
   if (loadingCart) return <Loader full />;
 
   if (cart.length === 0) {
     return (
       <div className="container-content py-24 text-center">
+        <button type="button" onClick={goBack} className="btn-outline mb-8">
+          <FiArrowLeft /> Back
+        </button>
         <h1 className="section-heading mb-4">Your bag is empty</h1>
         <p className="text-charcoal/60 mb-8">Explore the collection and find something worth the occasion.</p>
         <Link to="/products" className="btn-primary inline-flex">Continue Shopping</Link>
@@ -26,7 +36,12 @@ export default function Cart() {
 
   return (
     <div className="container-content py-10">
-      <h1 className="section-heading mb-10">Your Bag ({cart.length})</h1>
+      <div className="flex flex-wrap items-center justify-between gap-4 mb-10">
+        <h1 className="section-heading">Your Bag ({cart.length})</h1>
+        <button type="button" onClick={goBack} className="btn-outline">
+          <FiArrowLeft /> Back
+        </button>
+      </div>
       <div className="grid md:grid-cols-[1fr_360px] gap-12">
         <div className="space-y-6">
           {cart.map((item) => {
