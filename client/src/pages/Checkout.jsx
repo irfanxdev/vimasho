@@ -40,11 +40,14 @@ export default function Checkout() {
     });
   }, []);
 
+  useEffect(() => {
+    if (!loadingCart && cart.length === 0) {
+      navigate('/cart', { replace: true });
+    }
+  }, [cart.length, loadingCart, navigate]);
+
   if (loadingCart) return <Loader full />;
-  if (cart.length === 0) {
-    navigate('/cart');
-    return null;
-  }
+  if (cart.length === 0) return null;
 
   const shipping = cartTotal > 2999 ? 0 : 149;
   const tax = Math.round(cartTotal * 0.05);
@@ -133,6 +136,7 @@ export default function Checkout() {
             navigate(`/order-success/${order._id}`);
           } catch (err) {
             toast.error('Payment verification failed. Contact support with your order id.');
+            setPlacingOrder(false);
           }
         },
         modal: {

@@ -88,7 +88,7 @@ export function CartProvider({ children }) {
 
   const isWishlisted = (productId) => wishlist.some((p) => p._id === productId);
 
-  const cartCount = cart.reduce((sum, item) => sum + item.quantity, 0);
+  const cartCount = cart.length;
   const cartTotal = cart.reduce((sum, item) => {
     const product = item.product;
     if (!product) return sum;
