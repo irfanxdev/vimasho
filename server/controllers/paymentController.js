@@ -23,6 +23,10 @@ const createRazorpayOrder = asyncHandler(async (req, res) => {
     res.status(400);
     throw new Error('Order is already paid');
   }
+  if (!process.env.RAZORPAY_KEY_ID || !process.env.RAZORPAY_KEY_SECRET) {
+    res.status(503);
+    throw new Error('Payment gateway is not configured');
+  }
 
   const razorpayOrder = await razorpayInstance.orders.create({
     amount: Math.round(order.totalPrice * 100), // paise
@@ -54,13 +58,30 @@ const verifyRazorpayPayment = asyncHandler(async (req, res) => {
     res.status(404);
     throw new Error('Order not found');
   }
+  if (order.user.toString() !== req.user._id.toString()) {
+    res.status(403);
+    throw new Error('Not authorized');
+  }
+  if (order.isPaid) {
+    res.status(400);
+    throw new Error('Order is already paid');
+  }
+  if (order.paymentResult?.razorpayOrderId !== razorpay_order_id) {
+    res.status(400);
+    throw new Error('Payment verification failed: order mismatch');
+  }
 
   const generatedSignature = crypto
     .createHmac('sha256', process.env.RAZORPAY_KEY_SECRET)
     .update(`${razorpay_order_id}|${razorpay_payment_id}`)
     .digest('hex');
 
-  if (generatedSignature !== razorpay_signature) {
+  const generatedSignatureBuffer = Buffer.from(generatedSignature, 'utf8');
+  const receivedSignatureBuffer = Buffer.from(razorpay_signature || '', 'utf8');
+  if (
+    generatedSignatureBuffer.length !== receivedSignatureBuffer.length ||
+    !crypto.timingSafeEqual(generatedSignatureBuffer, receivedSignatureBuffer)
+  ) {
     res.status(400);
     throw new Error('Payment verification failed: signature mismatch');
   }
