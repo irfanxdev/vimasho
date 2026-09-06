@@ -21,8 +21,22 @@ const app = express();
 
 app.use(
   cors({
-    origin: process.env.CLIENT_URL ? process.env.CLIENT_URL.split(',') : '*',
+    origin: (requestOrigin, callback) => {
+      const configuredOrigins = (process.env.CLIENT_URL || 'http://localhost:5173')
+        .split(',')
+        .map((origin) => origin.trim().replace(/\/$/, ''))
+        .filter(Boolean);
+      const normalizedRequestOrigin = requestOrigin?.replace(/\/$/, '');
+
+      if (!normalizedRequestOrigin || configuredOrigins.includes(normalizedRequestOrigin)) {
+        callback(null, true);
+      } else {
+        callback(new Error(`CORS origin is not allowed: ${requestOrigin}`));
+      }
+    },
     credentials: true,
+    methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
   })
 );
 app.use(express.json({ limit: '5mb' }));
