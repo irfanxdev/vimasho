@@ -154,41 +154,44 @@ export default function Navbar() {
       {/* Mobile menu */}
       {mobileOpen && (
         <div className="fixed left-0 top-0 z-[100] flex h-[100dvh] min-h-screen w-screen max-w-none flex-col overflow-hidden bg-forest text-ivory">
-          <div className="flex justify-between items-center p-5 border-b border-ivory/10">
-            <span className="font-display text-2xl tracking-widest">VIMASHO</span>
-            <button onClick={() => setMobileOpen(false)} aria-label="Close menu" className="text-2xl">
+          <div className="flex items-center justify-between px-5 py-4 sm:px-6 border-b border-gold/30">
+            <div>
+              <span className="font-display text-2xl tracking-[0.18em]">VIMASHO</span>
+              <span className="block text-[9px] tracking-[0.28em] text-gold-light mt-1">MEN&apos;S ETHNIC WEAR</span>
+            </div>
+            <button onClick={() => setMobileOpen(false)} aria-label="Close menu" className="rounded-full border border-ivory/20 p-2 text-xl leading-none transition-colors hover:bg-ivory/10">
               <FiX />
             </button>
           </div>
           <nav className="flex flex-1 min-h-0 flex-col gap-3 overflow-y-auto overscroll-contain p-4 sm:p-6">
-            <Link to="/" onClick={() => setMobileOpen(false)} className="rounded border border-ivory/15 px-4 py-3 text-lg font-display tracking-wide">
+            <Link to="/" onClick={() => setMobileOpen(false)} className="rounded-lg bg-ivory/10 px-4 py-3 text-base font-medium tracking-wide transition-colors hover:bg-ivory/15">
               Home
             </Link>
-            <Link to="/products" onClick={() => setMobileOpen(false)} className="rounded border border-ivory/15 px-4 py-3 text-lg font-display tracking-wide">
+            <Link to="/products" onClick={() => setMobileOpen(false)} className="rounded-lg bg-ivory/10 px-4 py-3 text-base font-medium tracking-wide transition-colors hover:bg-ivory/15">
               All Products
             </Link>
-            <Link to="/wishlist" onClick={() => setMobileOpen(false)} className="rounded border border-ivory/15 px-4 py-3 text-lg font-display tracking-wide">
+            <Link to="/wishlist" onClick={() => setMobileOpen(false)} className="rounded-lg bg-ivory/10 px-4 py-3 text-base font-medium tracking-wide transition-colors hover:bg-ivory/15">
               Wishlist
             </Link>
-            <Link to="/cart" onClick={() => setMobileOpen(false)} className="rounded border border-ivory/15 px-4 py-3 text-lg font-display tracking-wide">
+            <Link to="/cart" onClick={() => setMobileOpen(false)} className="rounded-lg bg-ivory/10 px-4 py-3 text-base font-medium tracking-wide transition-colors hover:bg-ivory/15">
               Shopping Bag
             </Link>
             {NAV_GROUPS.map((group) => (
-              <div key={group}>
+              <div key={group} className="rounded-lg border border-ivory/15 px-4 py-3">
                 <Link
                   to={`/products?parent=${encodeURIComponent(group)}`}
                   onClick={() => setMobileOpen(false)}
-                  className="rounded border border-ivory/15 px-4 py-3 text-lg font-display tracking-wide"
+                  className="block text-base font-medium tracking-wide"
                 >
                   {group}
                 </Link>
-                <div className="flex flex-col gap-1 mt-2 ml-3">
+                <div className="flex flex-wrap gap-x-4 gap-y-1 mt-2">
                   {groupedCategories(group).map((cat) => (
                     <Link
                       key={cat._id}
                       to={`/products?category=${cat._id}`}
                       onClick={() => setMobileOpen(false)}
-                      className="text-sm text-ivory/70 break-words"
+                      className="text-xs text-ivory/60 break-words hover:text-gold-light"
                     >
                       {cat.name}
                     </Link>
@@ -200,17 +203,17 @@ export default function Navbar() {
             {user ? (
               <>
                 {user.role === 'admin' && (
-                  <Link to="/admin" onClick={() => setMobileOpen(false)} className="rounded border border-ivory/15 px-4 py-3">Admin Panel</Link>
+                  <Link to="/admin" onClick={() => setMobileOpen(false)} className="rounded-lg border border-gold/50 px-4 py-3 text-gold-light">Admin Panel</Link>
                 )}
-                <Link to="/orders" onClick={() => setMobileOpen(false)} className="rounded border border-ivory/15 px-4 py-3">My Orders</Link>
-                <Link to="/orders" onClick={() => setMobileOpen(false)} className="rounded border border-ivory/15 px-4 py-3">Track Order</Link>
-                <button onClick={() => { logout(); setMobileOpen(false); }} className="rounded border border-ivory/15 px-4 py-3 text-left">Logout</button>
+                <Link to="/orders" onClick={() => setMobileOpen(false)} className="rounded-lg border border-ivory/15 px-4 py-3">My Orders</Link>
+                <Link to="/orders" onClick={() => setMobileOpen(false)} className="rounded-lg border border-ivory/15 px-4 py-3">Track Order</Link>
+                <button onClick={() => { logout(); setMobileOpen(false); }} className="rounded-lg border border-ivory/15 px-4 py-3 text-left">Logout</button>
               </>
             ) : (
               <>
-                <Link to="/orders" onClick={() => setMobileOpen(false)} className="rounded border border-ivory/15 px-4 py-3">My Orders</Link>
-                <Link to="/orders" onClick={() => setMobileOpen(false)} className="rounded border border-ivory/15 px-4 py-3">Track Order</Link>
-                <Link to="/login" onClick={() => setMobileOpen(false)} className="rounded border border-ivory/15 px-4 py-3">Sign in</Link>
+                <Link to="/orders" onClick={() => setMobileOpen(false)} className="rounded-lg border border-ivory/15 px-4 py-3">My Orders</Link>
+                <Link to="/orders" onClick={() => setMobileOpen(false)} className="rounded-lg border border-ivory/15 px-4 py-3">Track Order</Link>
+                <Link to="/login" onClick={() => setMobileOpen(false)} className="rounded-lg border border-gold/50 px-4 py-3 text-gold-light">Sign in</Link>
               </>
             )}
           </nav>
