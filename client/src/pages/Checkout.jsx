@@ -135,7 +135,7 @@ export default function Checkout() {
             toast.success('Payment successful');
             navigate(`/order-success/${order._id}`);
           } catch (err) {
-            toast.error('Payment verification failed. Contact support with your order id.');
+            toast.error(err.response?.data?.message || 'Payment verification failed. Contact support with your order id.');
             setPlacingOrder(false);
           }
         },

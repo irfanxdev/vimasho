@@ -19,6 +19,12 @@ const createOrder = asyncHandler(async (req, res) => {
   const verifiedItems = [];
 
   for (const item of orderItems) {
+    const quantity = Number(item.quantity);
+    if (!item.product || !item.size || !item.color || !Number.isInteger(quantity) || quantity < 1) {
+      res.status(400);
+      throw new Error('Each order item must include a valid product, size, color and quantity');
+    }
+
     const product = await Product.findById(item.product);
     if (!product) {
       res.status(404);
@@ -26,19 +32,22 @@ const createOrder = asyncHandler(async (req, res) => {
     }
     const variant = product.variants.find((v) => v.color === item.color);
     const sizeEntry = variant && variant.sizes.find((s) => s.size === item.size);
-    if (!variant || !sizeEntry || sizeEntry.stock < item.quantity) {
+    if (!variant || !sizeEntry || sizeEntry.stock < quantity) {
       res.status(400);
       throw new Error(`${product.name} (${item.color}, ${item.size}) does not have enough stock`);
     }
-    const unitPrice = product.discountPrice && product.discountPrice < product.price ? product.discountPrice : product.price;
-    itemsPrice += unitPrice * item.quantity;
+    const unitPrice =
+      Number(product.discountPrice) > 0 && product.discountPrice < product.price
+        ? Number(product.discountPrice)
+        : Number(product.price);
+    itemsPrice += unitPrice * quantity;
     verifiedItems.push({
       product: product._id,
       name: product.name,
-      image: variant.images[0],
+      image: variant.images?.[0] || '/catalog/craft-banner.svg',
       size: item.size,
       color: item.color,
-      quantity: item.quantity,
+      quantity,
       price: unitPrice,
     });
   }
