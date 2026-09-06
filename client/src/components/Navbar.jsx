@@ -60,17 +60,17 @@ export default function Navbar() {
       </div>
 
       {/* Main nav */}
-      <div className="container-content flex items-center gap-2 py-3 sm:py-4">
+      <div className="container-content flex items-center gap-2 py-3 sm:py-4 lg:gap-8">
         <button className="lg:hidden text-forest text-2xl shrink-0" onClick={() => setMobileOpen(true)} aria-label="Open menu">
           <FiMenu />
         </button>
 
-        <Link to="/" className="flex flex-col items-center leading-none mx-auto lg:mx-0 min-w-0 max-w-[145px] sm:max-w-none">
+        <Link to="/" className="flex shrink-0 flex-col items-center leading-none mx-auto lg:mx-0 min-w-0 max-w-[145px] sm:max-w-none">
           <span className="font-display text-2xl sm:text-3xl tracking-[0.15em] text-forest font-semibold">VIMASHO</span>
           <span className="text-[8px] sm:text-[10px] tracking-[0.25em] sm:tracking-[0.35em] text-gold-dark mt-0.5 whitespace-nowrap">MEN&apos;S ETHNIC WEAR</span>
         </Link>
 
-        <nav className="hidden lg:flex items-center gap-5 xl:gap-8 mx-6 xl:mx-10">
+        <nav className="hidden lg:flex flex-1 items-center justify-center gap-5 xl:gap-10">
           {NAV_GROUPS.map((group) => (
             <div
               key={group}
@@ -101,7 +101,7 @@ export default function Navbar() {
           ))}
         </nav>
 
-        <div className="flex items-center gap-3 sm:gap-5 text-forest text-lg shrink-0">
+        <div className="flex shrink-0 items-center gap-3 sm:gap-5 lg:gap-6 text-forest text-lg">
           <button onClick={() => setSearchOpen((s) => !s)} aria-label="Search" className="hover:text-gold-dark transition-colors">
             <FiSearch />
           </button>
