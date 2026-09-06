@@ -116,6 +116,11 @@ export default function Navbar() {
           <Link to={user ? '/account' : '/login'} aria-label="Account" className="hidden sm:inline-flex hover:text-gold-dark transition-colors">
             <FiUser />
           </Link>
+          {user?.role === 'admin' && (
+            <Link to="/admin" className="hidden lg:inline-flex text-xs tracking-wide hover:text-gold-dark transition-colors">
+              Admin Panel
+            </Link>
+          )}
           <Link to="/cart" aria-label="Shopping bag" className="relative hover:text-gold-dark transition-colors">
             <FiShoppingBag />
             {cartCount > 0 && (

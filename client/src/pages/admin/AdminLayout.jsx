@@ -1,4 +1,5 @@
 import { NavLink, Outlet, useNavigate } from 'react-router-dom';
+import { FiArrowLeft } from 'react-icons/fi';
 import { useAuth } from '../../context/AuthContext';
 
 const links = [
@@ -17,13 +18,24 @@ export default function AdminLayout() {
     navigate('/', { replace: true });
   };
 
+  const goBack = () => {
+    if (window.history.length > 1) {
+      navigate(-1);
+    } else {
+      navigate('/admin');
+    }
+  };
+
   return (
     <div className="container-content py-10">
       <div className="flex flex-wrap items-center justify-between gap-4 mb-10">
-        <h1 className="section-heading">Admin Panel</h1>
-        <button type="button" onClick={handleLogout} className="btn-outline text-sm">
-          Logout
-        </button>
+        <div className="flex flex-wrap items-center gap-4">
+          <button type="button" onClick={goBack} className="btn-outline text-sm">
+            <FiArrowLeft /> Back
+          </button>
+          <h1 className="section-heading">Admin Panel</h1>
+        </div>
+        <button type="button" onClick={handleLogout} className="btn-outline text-sm">Logout</button>
       </div>
       <div className="grid lg:grid-cols-[200px_1fr] gap-8 lg:gap-10">
         <aside className="flex lg:flex-col gap-3 sm:gap-4 text-sm flex-wrap">
