@@ -25,8 +25,8 @@ export default function AdminLayout() {
           Logout
         </button>
       </div>
-      <div className="grid md:grid-cols-[200px_1fr] gap-10">
-        <aside className="flex md:flex-col gap-4 text-sm flex-wrap">
+      <div className="grid lg:grid-cols-[200px_1fr] gap-8 lg:gap-10">
+        <aside className="flex lg:flex-col gap-3 sm:gap-4 text-sm flex-wrap">
           {links.map((link) => (
             <NavLink
               key={link.to}

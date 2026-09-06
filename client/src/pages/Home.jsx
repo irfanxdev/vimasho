@@ -32,17 +32,17 @@ export default function Home() {
     <div>
       {/* Hero */}
       <section className="relative bg-forest text-ivory">
-        <div className="container-content py-24 md:py-36 flex flex-col items-center text-center">
+        <div className="container-content py-16 sm:py-24 md:py-36 flex flex-col items-center text-center">
           <Motif className="mb-6 opacity-80" />
-          <h1 className="text-4xl md:text-6xl leading-tight max-w-3xl">
+          <h1 className="text-3xl sm:text-4xl md:text-6xl leading-tight max-w-3xl">
             Tailored for the moments that call for more
           </h1>
           <p className="text-ivory/70 mt-6 max-w-xl text-base md:text-lg">
             Sherwanis, bandhgalas and festive menswear, cut with intention and finished by hand.
           </p>
-          <div className="flex gap-4 mt-10">
-            <Link to="/products?parent=Wedding" className="btn-gold">Shop Wedding Edit</Link>
-            <Link to="/products" className="btn-outline !border-ivory !text-ivory hover:!bg-ivory hover:!text-forest">
+          <div className="flex w-full max-w-sm flex-col sm:flex-row gap-3 sm:gap-4 mt-8 sm:mt-10">
+            <Link to="/products?parent=Wedding" className="btn-gold w-full">Shop Wedding Edit</Link>
+            <Link to="/products" className="btn-outline w-full !border-ivory !text-ivory hover:!bg-ivory hover:!text-forest">
               Explore All
             </Link>
           </div>

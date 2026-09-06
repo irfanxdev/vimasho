@@ -187,7 +187,7 @@ export default function Checkout() {
               + Add a new address
             </button>
           ) : (
-            <form onSubmit={handleAddAddress} className="grid grid-cols-2 gap-4 border border-charcoal/15 p-5">
+            <form onSubmit={handleAddAddress} className="grid grid-cols-1 sm:grid-cols-2 gap-4 border border-charcoal/15 p-4 sm:p-5">
               <input required placeholder="Full Name" className="input-field col-span-2" value={newAddress.fullName} onChange={(e) => setNewAddress({ ...newAddress, fullName: e.target.value })} />
               <input required placeholder="Phone" className="input-field col-span-2" value={newAddress.phone} onChange={(e) => setNewAddress({ ...newAddress, phone: e.target.value })} />
               <input required placeholder="Address Line 1" className="input-field col-span-2" value={newAddress.line1} onChange={(e) => setNewAddress({ ...newAddress, line1: e.target.value })} />
@@ -196,7 +196,7 @@ export default function Checkout() {
               <input required placeholder="State" className="input-field" value={newAddress.state} onChange={(e) => setNewAddress({ ...newAddress, state: e.target.value })} />
               <input required placeholder="Postal Code" className="input-field" value={newAddress.postalCode} onChange={(e) => setNewAddress({ ...newAddress, postalCode: e.target.value })} />
               <input required placeholder="Country" className="input-field" value={newAddress.country} onChange={(e) => setNewAddress({ ...newAddress, country: e.target.value })} />
-              <div className="col-span-2 flex gap-3">
+              <div className="sm:col-span-2 flex flex-col sm:flex-row gap-3">
                 <button type="submit" className="btn-primary">Save Address</button>
                 {addresses.length > 0 && (
                   <button type="button" onClick={() => setShowNewAddress(false)} className="btn-outline">Cancel</button>

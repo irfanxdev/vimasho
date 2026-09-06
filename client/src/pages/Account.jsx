@@ -43,7 +43,7 @@ export default function Account() {
     <div className="container-content py-10">
       <h1 className="section-heading mb-10">My Account</h1>
       <div className="grid md:grid-cols-[220px_1fr] gap-12">
-        <aside className="flex md:flex-col gap-4 text-sm">
+        <aside className="flex flex-wrap md:flex-col gap-4 text-sm">
           <span className="font-medium text-forest">Profile</span>
           <Link to="/orders" className="text-charcoal/60 hover:text-forest">Orders</Link>
           <Link to="/wishlist" className="text-charcoal/60 hover:text-forest">Wishlist</Link>

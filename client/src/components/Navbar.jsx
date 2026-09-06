@@ -41,7 +41,7 @@ export default function Navbar() {
   return (
     <header className="sticky top-0 z-40 bg-ivory/95 backdrop-blur border-b border-charcoal/10">
       {/* Top strip */}
-      <div className="hidden md:block bg-forest text-ivory text-xs">
+      <div className="hidden lg:block bg-forest text-ivory text-xs">
         <div className="container-content flex justify-between items-center py-2">
           <span className="tracking-wide">Complimentary alterations on wedding orders</span>
           <div className="flex gap-6">
@@ -54,16 +54,16 @@ export default function Navbar() {
 
       {/* Main nav */}
       <div className="container-content flex items-center justify-between py-4">
-        <button className="md:hidden text-forest text-2xl" onClick={() => setMobileOpen(true)} aria-label="Open menu">
+        <button className="lg:hidden text-forest text-2xl shrink-0" onClick={() => setMobileOpen(true)} aria-label="Open menu">
           <FiMenu />
         </button>
 
-        <Link to="/" className="flex flex-col items-center leading-none mx-auto md:mx-0">
-          <span className="font-display text-3xl tracking-[0.15em] text-forest font-semibold">VIMASHO</span>
-          <span className="text-[10px] tracking-[0.35em] text-gold-dark mt-0.5">MEN&apos;S ETHNIC WEAR</span>
+        <Link to="/" className="flex flex-col items-center leading-none mx-auto lg:mx-0 min-w-0">
+          <span className="font-display text-2xl sm:text-3xl tracking-[0.15em] text-forest font-semibold">VIMASHO</span>
+          <span className="text-[8px] sm:text-[10px] tracking-[0.25em] sm:tracking-[0.35em] text-gold-dark mt-0.5 whitespace-nowrap">MEN&apos;S ETHNIC WEAR</span>
         </Link>
 
-        <nav className="hidden md:flex items-center gap-8 mx-10">
+        <nav className="hidden lg:flex items-center gap-5 xl:gap-8 mx-6 xl:mx-10">
           {NAV_GROUPS.map((group) => (
             <div
               key={group}
@@ -94,7 +94,7 @@ export default function Navbar() {
           ))}
         </nav>
 
-        <div className="flex items-center gap-5 text-forest text-lg">
+        <div className="flex items-center gap-3 sm:gap-5 text-forest text-lg shrink-0">
           <button onClick={() => setSearchOpen((s) => !s)} aria-label="Search" className="hover:text-gold-dark transition-colors">
             <FiSearch />
           </button>
@@ -153,17 +153,17 @@ export default function Navbar() {
               <FiX />
             </button>
           </div>
-          <nav className="flex flex-col p-5 gap-5 overflow-y-auto">
-            <Link to="/" onClick={() => setMobileOpen(false)} className="text-lg font-display tracking-wide">
+          <nav className="flex flex-col p-4 sm:p-6 gap-3 overflow-y-auto">
+            <Link to="/" onClick={() => setMobileOpen(false)} className="rounded border border-ivory/15 px-4 py-3 text-lg font-display tracking-wide">
               Home
             </Link>
-            <Link to="/products" onClick={() => setMobileOpen(false)} className="text-lg font-display tracking-wide">
+            <Link to="/products" onClick={() => setMobileOpen(false)} className="rounded border border-ivory/15 px-4 py-3 text-lg font-display tracking-wide">
               All Products
             </Link>
-            <Link to="/wishlist" onClick={() => setMobileOpen(false)} className="text-lg font-display tracking-wide">
+            <Link to="/wishlist" onClick={() => setMobileOpen(false)} className="rounded border border-ivory/15 px-4 py-3 text-lg font-display tracking-wide">
               Wishlist
             </Link>
-            <Link to="/cart" onClick={() => setMobileOpen(false)} className="text-lg font-display tracking-wide">
+            <Link to="/cart" onClick={() => setMobileOpen(false)} className="rounded border border-ivory/15 px-4 py-3 text-lg font-display tracking-wide">
               Shopping Bag
             </Link>
             {NAV_GROUPS.map((group) => (
@@ -195,13 +195,16 @@ export default function Navbar() {
                 {user.role === 'admin' && (
                   <Link to="/admin" onClick={() => setMobileOpen(false)}>Admin Panel</Link>
                 )}
-                <Link to="/" onClick={() => setMobileOpen(false)}>Home</Link>
-                <Link to="/orders" onClick={() => setMobileOpen(false)}>My Orders</Link>
-                <Link to="/orders" onClick={() => setMobileOpen(false)}>Track Order</Link>
-                <button onClick={() => { logout(); setMobileOpen(false); }} className="text-left">Logout</button>
+                <Link to="/orders" onClick={() => setMobileOpen(false)} className="rounded border border-ivory/15 px-4 py-3">My Orders</Link>
+                <Link to="/orders" onClick={() => setMobileOpen(false)} className="rounded border border-ivory/15 px-4 py-3">Track Order</Link>
+                <button onClick={() => { logout(); setMobileOpen(false); }} className="rounded border border-ivory/15 px-4 py-3 text-left">Logout</button>
               </>
             ) : (
-              <Link to="/login" onClick={() => setMobileOpen(false)}>Sign in</Link>
+              <>
+                <Link to="/orders" onClick={() => setMobileOpen(false)} className="rounded border border-ivory/15 px-4 py-3">My Orders</Link>
+                <Link to="/orders" onClick={() => setMobileOpen(false)} className="rounded border border-ivory/15 px-4 py-3">Track Order</Link>
+                <Link to="/login" onClick={() => setMobileOpen(false)} className="rounded border border-ivory/15 px-4 py-3">Sign in</Link>
+              </>
             )}
           </nav>
         </div>
