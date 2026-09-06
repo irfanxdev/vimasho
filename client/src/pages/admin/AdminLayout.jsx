@@ -1,4 +1,5 @@
-import { NavLink, Outlet } from 'react-router-dom';
+import { NavLink, Outlet, useNavigate } from 'react-router-dom';
+import { useAuth } from '../../context/AuthContext';
 
 const links = [
   { to: '/admin', label: 'Dashboard', end: true },
@@ -8,9 +9,22 @@ const links = [
 ];
 
 export default function AdminLayout() {
+  const { logout } = useAuth();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    logout();
+    navigate('/', { replace: true });
+  };
+
   return (
     <div className="container-content py-10">
-      <h1 className="section-heading mb-10">Admin Panel</h1>
+      <div className="flex flex-wrap items-center justify-between gap-4 mb-10">
+        <h1 className="section-heading">Admin Panel</h1>
+        <button type="button" onClick={handleLogout} className="btn-outline text-sm">
+          Logout
+        </button>
+      </div>
       <div className="grid md:grid-cols-[200px_1fr] gap-10">
         <aside className="flex md:flex-col gap-4 text-sm flex-wrap">
           {links.map((link) => (
