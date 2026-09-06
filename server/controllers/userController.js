@@ -2,14 +2,25 @@ const asyncHandler = require('express-async-handler');
 const User = require('../models/User');
 const Product = require('../models/Product');
 
+const populateCart = async (user) => {
+  await user.populate('cart.product');
+  const validCart = user.cart.filter((item) => item.product && Number(item.quantity) > 0);
+  if (validCart.length !== user.cart.length) {
+    user.cart = validCart;
+    await user.save();
+    await user.populate('cart.product');
+  }
+  return user.cart;
+};
+
 // ---------- CART ----------
 
 // @desc    Get current user's cart, populated with live product data
 // @route   GET /api/users/cart
 // @access  Private
 const getCart = asyncHandler(async (req, res) => {
-  const user = await User.findById(req.user._id).populate('cart.product');
-  res.json(user.cart);
+  const user = await User.findById(req.user._id);
+  res.json(await populateCart(user));
 });
 
 // @desc    Add an item to cart without changing an existing item's quantity
@@ -41,8 +52,7 @@ const addToCart = asyncHandler(async (req, res) => {
   }
 
   await user.save();
-  const populated = await user.populate('cart.product');
-  res.status(201).json(populated.cart);
+  res.status(201).json(await populateCart(user));
 });
 
 // @desc    Update cart item quantity
@@ -58,8 +68,7 @@ const updateCartItem = asyncHandler(async (req, res) => {
   }
   item.quantity = Math.max(1, Number(quantity));
   await user.save();
-  const populated = await user.populate('cart.product');
-  res.json(populated.cart);
+  res.json(await populateCart(user));
 });
 
 // @desc    Remove item from cart
@@ -69,8 +78,7 @@ const removeCartItem = asyncHandler(async (req, res) => {
   const user = await User.findById(req.user._id);
   user.cart = user.cart.filter((item) => item._id.toString() !== req.params.itemId);
   await user.save();
-  const populated = await user.populate('cart.product');
-  res.json(populated.cart);
+  res.json(await populateCart(user));
 });
 
 // @desc    Clear entire cart (used after successful order)

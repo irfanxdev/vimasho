@@ -151,7 +151,7 @@ export default function Checkout() {
       });
       rzp.open();
     } catch (err) {
-      toast.error(err.response?.data?.message || 'Could not place order');
+      toast.error(err.response?.data?.message || 'Could not place order. Please try again.');
       setPlacingOrder(false);
     }
   };
@@ -216,7 +216,15 @@ export default function Checkout() {
             {cart.map((item) => (
               <div key={item._id} className="flex justify-between text-charcoal/70">
                 <span>{item.product?.name} × {item.quantity}</span>
-                <span>₹{((item.product?.discountPrice || item.product?.price) * item.quantity).toLocaleString('en-IN')}</span>
+                <span>
+                  ₹{(
+                    (Number(item.product?.discountPrice) > 0 &&
+                    Number(item.product?.discountPrice) < Number(item.product?.price)
+                      ? Number(item.product.discountPrice)
+                      : Number(item.product?.price) || 0) *
+                    (Number(item.quantity) || 0)
+                  ).toLocaleString('en-IN')}
+                </span>
               </div>
             ))}
           </div>

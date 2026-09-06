@@ -5,6 +5,21 @@ import { useAuth } from './AuthContext';
 
 const CartContext = createContext(null);
 
+const normalizeCart = (items) =>
+  (Array.isArray(items) ? items : []).filter((item) => {
+    const quantity = Number(item?.quantity);
+    return item?.product && Number.isFinite(quantity) && quantity > 0;
+  });
+
+const getProductPrice = (product) => {
+  const price = Number(product?.price);
+  const discountPrice = Number(product?.discountPrice);
+  if (Number.isFinite(discountPrice) && discountPrice > 0 && discountPrice < price) {
+    return discountPrice;
+  }
+  return Number.isFinite(price) ? price : 0;
+};
+
 export function CartProvider({ children }) {
   const { user } = useAuth();
   const [cart, setCart] = useState([]);
@@ -19,7 +34,7 @@ export function CartProvider({ children }) {
     setLoadingCart(true);
     try {
       const { data } = await api.get('/users/cart');
-      setCart(data);
+      setCart(normalizeCart(data));
     } catch {
       // silent - user may have stale token
     } finally {
@@ -52,7 +67,7 @@ export function CartProvider({ children }) {
     }
     try {
       const { data } = await api.post('/users/cart', { productId, size, color, quantity });
-      setCart(data);
+      setCart(normalizeCart(data));
       toast.success('Added to bag');
       return { success: true };
     } catch (err) {
@@ -63,18 +78,18 @@ export function CartProvider({ children }) {
 
   const updateCartItem = async (itemId, quantity) => {
     const { data } = await api.put(`/users/cart/${itemId}`, { quantity });
-    setCart(data);
+    setCart(normalizeCart(data));
   };
 
   const removeCartItem = async (itemId) => {
     const { data } = await api.delete(`/users/cart/${itemId}`);
-    setCart(data);
+    setCart(normalizeCart(data));
     toast.success('Removed from bag');
   };
 
   const clearCart = async () => {
     const { data } = await api.delete('/users/cart');
-    setCart(data);
+    setCart(normalizeCart(data));
   };
 
   const toggleWishlist = async (productId) => {
@@ -90,10 +105,8 @@ export function CartProvider({ children }) {
 
   const cartCount = cart.length;
   const cartTotal = cart.reduce((sum, item) => {
-    const product = item.product;
-    if (!product) return sum;
-    const price = product.discountPrice && product.discountPrice < product.price ? product.discountPrice : product.price;
-    return sum + price * item.quantity;
+    const quantity = Number(item.quantity);
+    return sum + getProductPrice(item.product) * (Number.isFinite(quantity) ? quantity : 0);
   }, 0);
 
   return (

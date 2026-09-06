@@ -33,7 +33,9 @@ export default function Cart() {
             const product = item.product;
             if (!product) return null;
             const variant = product.variants?.find((v) => v.color === item.color);
-            const price = product.discountPrice && product.discountPrice < product.price ? product.discountPrice : product.price;
+            const price = Number(product.discountPrice) > 0 && Number(product.discountPrice) < Number(product.price)
+              ? Number(product.discountPrice)
+              : Number(product.price) || 0;
             return (
               <div key={item._id} className="flex gap-5 border-b border-charcoal/10 pb-6">
                 <Link to={`/products/${product.slug}`} className="w-24 h-32 bg-charcoal/5 shrink-0 overflow-hidden">
