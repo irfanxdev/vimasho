@@ -39,7 +39,7 @@ export default function Navbar() {
   const groupedCategories = (group) => categories.filter((c) => c.parent === group);
 
   return (
-    <header className="sticky top-0 z-40 bg-ivory/95 backdrop-blur border-b border-charcoal/10">
+    <header className="sticky top-0 z-40 bg-ivory/95 border-b border-charcoal/10">
       {/* Top strip */}
       <div className="hidden lg:block bg-forest text-ivory text-xs">
         <div className="container-content flex justify-between items-center py-2">
@@ -146,7 +146,7 @@ export default function Navbar() {
 
       {/* Mobile menu */}
       {mobileOpen && (
-        <div className="fixed inset-0 z-50 bg-forest text-ivory flex flex-col">
+        <div className="fixed inset-0 z-[100] bg-forest text-ivory flex flex-col">
           <div className="flex justify-between items-center p-5 border-b border-ivory/10">
             <span className="font-display text-2xl tracking-widest">VIMASHO</span>
             <button onClick={() => setMobileOpen(false)} aria-label="Close menu" className="text-2xl">

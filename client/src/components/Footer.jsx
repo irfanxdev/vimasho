@@ -6,7 +6,7 @@ export default function Footer() {
   return (
     <footer className="bg-forest text-ivory mt-24">
       <div className="container-content py-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-10">
-        <div className="col-span-2 md:col-span-1">
+        <div className="col-span-1">
           <span className="font-display text-2xl tracking-widest">VIMASHO</span>
           <p className="text-ivory/60 text-sm mt-4 leading-relaxed max-w-xs">
             Tailored sherwanis, bandhgalas and festive menswear, crafted for the moments that matter.
