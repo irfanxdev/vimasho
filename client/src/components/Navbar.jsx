@@ -195,9 +195,10 @@ export default function Navbar() {
                 {user.role === 'admin' && (
                   <Link to="/admin" onClick={() => setMobileOpen(false)}>Admin Panel</Link>
                 )}
-                <Link to="/account" onClick={() => setMobileOpen(false)}>My Account</Link>
+                <Link to="/" onClick={() => setMobileOpen(false)}>Home</Link>
                 <Link to="/orders" onClick={() => setMobileOpen(false)}>My Orders</Link>
-                <button onClick={() => { logout(); setMobileOpen(false); }} className="text-left">Sign out</button>
+                <Link to="/orders" onClick={() => setMobileOpen(false)}>Track Order</Link>
+                <button onClick={() => { logout(); setMobileOpen(false); }} className="text-left">Logout</button>
               </>
             ) : (
               <Link to="/login" onClick={() => setMobileOpen(false)}>Sign in</Link>
