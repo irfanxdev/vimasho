@@ -53,12 +53,12 @@ export default function Navbar() {
       </div>
 
       {/* Main nav */}
-      <div className="container-content flex items-center justify-between py-4">
+      <div className="container-content flex items-center gap-2 py-3 sm:py-4">
         <button className="lg:hidden text-forest text-2xl shrink-0" onClick={() => setMobileOpen(true)} aria-label="Open menu">
           <FiMenu />
         </button>
 
-        <Link to="/" className="flex flex-col items-center leading-none mx-auto lg:mx-0 min-w-0">
+        <Link to="/" className="flex flex-col items-center leading-none mx-auto lg:mx-0 min-w-0 max-w-[145px] sm:max-w-none">
           <span className="font-display text-2xl sm:text-3xl tracking-[0.15em] text-forest font-semibold">VIMASHO</span>
           <span className="text-[8px] sm:text-[10px] tracking-[0.25em] sm:tracking-[0.35em] text-gold-dark mt-0.5 whitespace-nowrap">MEN&apos;S ETHNIC WEAR</span>
         </Link>
@@ -98,7 +98,7 @@ export default function Navbar() {
           <button onClick={() => setSearchOpen((s) => !s)} aria-label="Search" className="hover:text-gold-dark transition-colors">
             <FiSearch />
           </button>
-          <Link to="/wishlist" aria-label="Wishlist" className="relative hover:text-gold-dark transition-colors">
+          <Link to="/wishlist" aria-label="Wishlist" className="relative hidden sm:inline-flex hover:text-gold-dark transition-colors">
             <FiHeart />
             {wishlist?.length > 0 && (
               <span className="absolute -top-2 -right-2 bg-gold text-forest-dark text-[10px] rounded-full w-4 h-4 flex items-center justify-center font-sans">
@@ -106,7 +106,7 @@ export default function Navbar() {
               </span>
             )}
           </Link>
-          <Link to={user ? '/account' : '/login'} aria-label="Account" className="hover:text-gold-dark transition-colors">
+          <Link to={user ? '/account' : '/login'} aria-label="Account" className="hidden sm:inline-flex hover:text-gold-dark transition-colors">
             <FiUser />
           </Link>
           <Link to="/cart" aria-label="Shopping bag" className="relative hover:text-gold-dark transition-colors">
@@ -153,7 +153,7 @@ export default function Navbar() {
               <FiX />
             </button>
           </div>
-          <nav className="flex flex-col p-4 sm:p-6 gap-3 overflow-y-auto">
+          <nav className="flex flex-1 min-h-0 flex-col p-4 sm:p-6 gap-3 overflow-y-auto overscroll-contain">
             <Link to="/" onClick={() => setMobileOpen(false)} className="rounded border border-ivory/15 px-4 py-3 text-lg font-display tracking-wide">
               Home
             </Link>
@@ -171,7 +171,7 @@ export default function Navbar() {
                 <Link
                   to={`/products?parent=${encodeURIComponent(group)}`}
                   onClick={() => setMobileOpen(false)}
-                  className="text-lg font-display tracking-wide"
+                  className="rounded border border-ivory/15 px-4 py-3 text-lg font-display tracking-wide"
                 >
                   {group}
                 </Link>
@@ -181,7 +181,7 @@ export default function Navbar() {
                       key={cat._id}
                       to={`/products?category=${cat._id}`}
                       onClick={() => setMobileOpen(false)}
-                      className="text-sm text-ivory/70"
+                      className="text-sm text-ivory/70 break-words"
                     >
                       {cat.name}
                     </Link>
@@ -193,7 +193,7 @@ export default function Navbar() {
             {user ? (
               <>
                 {user.role === 'admin' && (
-                  <Link to="/admin" onClick={() => setMobileOpen(false)}>Admin Panel</Link>
+                  <Link to="/admin" onClick={() => setMobileOpen(false)} className="rounded border border-ivory/15 px-4 py-3">Admin Panel</Link>
                 )}
                 <Link to="/orders" onClick={() => setMobileOpen(false)} className="rounded border border-ivory/15 px-4 py-3">My Orders</Link>
                 <Link to="/orders" onClick={() => setMobileOpen(false)} className="rounded border border-ivory/15 px-4 py-3">Track Order</Link>
