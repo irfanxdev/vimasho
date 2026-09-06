@@ -12,7 +12,7 @@ const getCart = asyncHandler(async (req, res) => {
   res.json(user.cart);
 });
 
-// @desc    Add an item to cart (or increment quantity if same product/size/color exists)
+// @desc    Add an item to cart without changing an existing item's quantity
 // @route   POST /api/users/cart
 // @access  Private
 const addToCart = asyncHandler(async (req, res) => {
@@ -36,9 +36,7 @@ const addToCart = asyncHandler(async (req, res) => {
     (item) => item.product.toString() === productId && item.size === size && item.color === color
   );
 
-  if (existing) {
-    existing.quantity += Number(quantity);
-  } else {
+  if (!existing) {
     user.cart.push({ product: productId, size, color, quantity: Number(quantity) });
   }
 

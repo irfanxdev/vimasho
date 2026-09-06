@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { FiInstagram, FiFacebook, FiTwitter } from 'react-icons/fi';
+import { FiInstagram, FiFacebook, FiTwitter, FiMapPin } from 'react-icons/fi';
 import Motif from './Motif';
 
 export default function Footer() {
@@ -10,6 +10,10 @@ export default function Footer() {
           <span className="font-display text-2xl tracking-widest">VIMASHO</span>
           <p className="text-ivory/60 text-sm mt-4 leading-relaxed max-w-xs">
             Tailored sherwanis, bandhgalas and festive menswear, crafted for the moments that matter.
+          </p>
+          <p className="flex items-start gap-2 text-ivory/70 text-sm mt-4">
+            <FiMapPin className="mt-0.5 shrink-0 text-gold" />
+            Gurugram, Sector 10 A
           </p>
           <div className="flex gap-4 mt-6 text-lg">
             <a href="#" aria-label="Instagram" className="hover:text-gold transition-colors"><FiInstagram /></a>

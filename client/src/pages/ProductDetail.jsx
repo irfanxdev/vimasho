@@ -44,7 +44,7 @@ export default function ProductDetail() {
   const hasDiscount = product.discountPrice && product.discountPrice < product.price;
   const selectedSizeStock = currentVariant?.sizes.find((s) => s.size === selectedSize)?.stock ?? null;
 
-  const handleAddToCart = async () => {
+  const handleCartAction = async (buyNow = false) => {
     if (!selectedSize) {
       toast.error('Please select a size');
       return;
@@ -54,6 +54,8 @@ export default function ProductDetail() {
     setAdding(false);
     if (result?.requiresAuth) {
       navigate('/login', { state: { from: { pathname: `/products/${slug}` } } });
+    } else if (result?.success && buyNow) {
+      navigate('/checkout');
     }
   };
 
@@ -160,9 +162,12 @@ export default function ProductDetail() {
           </div>
 
           {/* Actions */}
-          <div className="flex gap-4 mt-8">
-            <button onClick={handleAddToCart} disabled={adding} className="btn-primary flex-1">
-              {adding ? 'Adding...' : 'Add to Bag'}
+          <div className="flex flex-col sm:flex-row gap-3 mt-8">
+            <button onClick={() => handleCartAction(true)} disabled={adding} className="btn-gold flex-1">
+              {adding ? 'Processing...' : 'Buy Now'}
+            </button>
+            <button onClick={() => handleCartAction(false)} disabled={adding} className="btn-primary flex-1">
+              {adding ? 'Adding...' : 'Add to Cart'}
             </button>
             <button
               onClick={() => toggleWishlist(product._id)}

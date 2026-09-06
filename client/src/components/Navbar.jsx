@@ -154,6 +154,18 @@ export default function Navbar() {
             </button>
           </div>
           <nav className="flex flex-col p-5 gap-5 overflow-y-auto">
+            <Link to="/" onClick={() => setMobileOpen(false)} className="text-lg font-display tracking-wide">
+              Home
+            </Link>
+            <Link to="/products" onClick={() => setMobileOpen(false)} className="text-lg font-display tracking-wide">
+              All Products
+            </Link>
+            <Link to="/wishlist" onClick={() => setMobileOpen(false)} className="text-lg font-display tracking-wide">
+              Wishlist
+            </Link>
+            <Link to="/cart" onClick={() => setMobileOpen(false)} className="text-lg font-display tracking-wide">
+              Shopping Bag
+            </Link>
             {NAV_GROUPS.map((group) => (
               <div key={group}>
                 <Link
@@ -180,6 +192,9 @@ export default function Navbar() {
             <div className="rule-divider my-2" />
             {user ? (
               <>
+                {user.role === 'admin' && (
+                  <Link to="/admin" onClick={() => setMobileOpen(false)}>Admin Panel</Link>
+                )}
                 <Link to="/account" onClick={() => setMobileOpen(false)}>My Account</Link>
                 <Link to="/orders" onClick={() => setMobileOpen(false)}>My Orders</Link>
                 <button onClick={() => { logout(); setMobileOpen(false); }} className="text-left">Sign out</button>
