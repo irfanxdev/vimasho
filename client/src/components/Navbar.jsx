@@ -27,6 +27,13 @@ export default function Navbar() {
     if (searchOpen) searchRef.current?.focus();
   }, [searchOpen]);
 
+  useEffect(() => {
+    document.body.style.overflow = mobileOpen ? 'hidden' : '';
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [mobileOpen]);
+
   const handleSearch = (e) => {
     e.preventDefault();
     if (searchTerm.trim()) {
@@ -146,14 +153,14 @@ export default function Navbar() {
 
       {/* Mobile menu */}
       {mobileOpen && (
-        <div className="fixed inset-0 z-[100] bg-forest text-ivory flex flex-col">
+        <div className="fixed left-0 top-0 z-[100] flex h-[100dvh] min-h-screen w-screen max-w-none flex-col overflow-hidden bg-forest text-ivory">
           <div className="flex justify-between items-center p-5 border-b border-ivory/10">
             <span className="font-display text-2xl tracking-widest">VIMASHO</span>
             <button onClick={() => setMobileOpen(false)} aria-label="Close menu" className="text-2xl">
               <FiX />
             </button>
           </div>
-          <nav className="flex flex-1 min-h-0 flex-col p-4 sm:p-6 gap-3 overflow-y-auto overscroll-contain">
+          <nav className="flex flex-1 min-h-0 flex-col gap-3 overflow-y-auto overscroll-contain p-4 sm:p-6">
             <Link to="/" onClick={() => setMobileOpen(false)} className="rounded border border-ivory/15 px-4 py-3 text-lg font-display tracking-wide">
               Home
             </Link>
